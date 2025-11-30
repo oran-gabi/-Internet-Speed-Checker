@@ -337,8 +337,7 @@ class SpeedTestApp:
             ))
             
         except Exception as e:
-            # FIX: Capture the exception variable 'e' explicitly in the lambda function
-            # so it is correctly bound when the callback is executed later on the main thread.
+            
             self.root.after(0, lambda err=e: self.handle_error(str(err)))
             
     def update_results(self, download, upload, ping):
@@ -373,7 +372,7 @@ class SpeedTestApp:
             f"An error occurred:\n{error_msg}\n\nPlease check your internet connection."
         )
 
-# --- Main Execution Block (No changes needed) ---
+# --- Main Execution Block  ---
 
 def main():
     root = tk.Tk() 
