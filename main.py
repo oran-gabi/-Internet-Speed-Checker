@@ -83,7 +83,7 @@ class SpeedTestApp:
             
             self.background_label = tk.Label(self.root, image=self.tk_image)
             
-            # *** KEY CHANGE: Place image on the right edge ***
+            # KEY CHANGE: Place image on the right edge
             # x=800 (1200 - 400) places the top-left corner at x=800
             self.background_label.place(x=self.APP_INTERFACE_WIDTH, y=0, width=self.IMAGE_WIDTH, height=self.APP_HEIGHT)
             
@@ -337,7 +337,9 @@ class SpeedTestApp:
             ))
             
         except Exception as e:
-            self.root.after(0, lambda: self.handle_error(str(e)))
+            # FIX: Capture the exception variable 'e' explicitly in the lambda function
+            # so it is correctly bound when the callback is executed later on the main thread.
+            self.root.after(0, lambda err=e: self.handle_error(str(err)))
             
     def update_results(self, download, upload, ping):
         """Update UI with test results"""
